@@ -1,0 +1,78 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+@mixin flexDisplay($direction) {
+    display: flex;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+$header-text-margin: 2em;
+
+
+
+body {
+    font-family: Inter, sans-serif;
+    background: url("../images/pexels-arnie-chou-1229042.jpg"), linear-gradient(180deg, #131317 -60.19%, rgba(65, 66, 99, 0.09) 100%);
+    opacity: 0.6;
+    background-size: cover;
+    background-repeat: no-repeat, no-repeat;
+    min-height: 100vh;
+    color: hsl(0, 0%, 100%);
+
+    .container {
+        header {
+            width: 100%;
+            @include flexDisplay(row);
+
+            .header-container {
+                width: 80%;
+                margin: 0 auto;
+                @include flexDisplay(row);
+                justify-content: space-between;
+                font-size: 1.1rem;
+                padding: 1em 0;
+                border-bottom: 1px solid #E7E7F2;
+                backdrop-filter: blur(60px);
+                -webkit-backdrop-filter: blur(60px);
+
+                .header-li {
+                    padding: 0.5em 0
+                }
+
+                .header-about-contact-container {
+                    @include flexDisplay(row);
+
+                    .about-container {
+                        margin-right: $header-text-margin;
+                    }
+
+                }
+
+                .logo-container {
+                    &:hover {
+                        svg {
+                            path {
+                                fill:hsl(0, 0%, 100%);
+                            }
+                        }
+                    }
+                }
+
+                .header-authentication-container {
+                    @include flexDisplay(row);
+
+                    .search-bar-container, .sign-up-container {
+                        margin-left: $header-text-margin;
+                    }
+                }
+            }
+        }
+    }
+}
