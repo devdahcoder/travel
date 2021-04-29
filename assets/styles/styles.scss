@@ -13,6 +13,41 @@
     flex-direction: $direction;
 }
 
+@mixin button-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border: 0px solid #000;
+    align-items: stretch;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+@mixin svg-button {
+    font-size: 14px;
+    line-height: 18px;
+    align-items: center;
+    background: 0 0;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    outline: none;
+}
+
+@mixin svg-container {
+    cursor: pointer;
+    vertical-align: baseline;
+    border: 0 solid #000;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
 $header-text-margin: 2em;
 
 
@@ -20,13 +55,17 @@ $header-text-margin: 2em;
 body {
     font-family: Inter, sans-serif;
     background: url("../images/pexels-arnie-chou-1229042.jpg"), linear-gradient(180deg, #131317 -60.19%, rgba(65, 66, 99, 0.09) 100%);
-    opacity: 0.6;
+    opacity: 0.9;
     background-size: cover;
     background-repeat: no-repeat, no-repeat;
     min-height: 100vh;
     color: hsl(0, 0%, 100%);
 
     .container {
+        position: relative;
+        height: 100vh;
+
+
         header {
             width: 100%;
             @include flexDisplay(row);
@@ -37,8 +76,8 @@ body {
                 @include flexDisplay(row);
                 justify-content: space-between;
                 font-size: 1.1rem;
-                padding: 1em 0;
-                border-bottom: 1px solid #E7E7F2;
+                padding: 0.8em 0;
+                border-bottom: 1px solid hsl(240, 30%, 93%);
                 backdrop-filter: blur(60px);
                 -webkit-backdrop-filter: blur(60px);
 
@@ -70,6 +109,131 @@ body {
 
                     .search-bar-container, .sign-up-container {
                         margin-left: $header-text-margin;
+                    }
+                }
+            }
+        }
+
+
+        .vacation-booking-container {
+            background: hsla(0, 0%, 100%, 0.15);
+            backdrop-filter: blur(80px);  /* Note: backdrop-filter has minimal browser support */
+            border-radius: 20px 20px 0px 0px;
+            width: 80%;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 0);
+            padding: 1em 3em;
+            display: flex;
+            flex-direction: column;
+
+            .vacation-booking-header {
+                margin-bottom: 0.7em;
+            }
+
+            .vacation-booking-display {
+                @include flexDisplay(row);
+
+                .vacation-select-container {
+                    flex-grow: 1;
+                    width: 100%;
+                    margin-right: 1em;
+
+                    .vacation-select-display {
+                        // opacity: 0.3;
+                        @include flexDisplay(row);
+                        border: 1px solid hsl(240, 30%, 93%);
+                        box-sizing: border-box;
+                        border-radius: 10px;
+                        list-style: none;
+
+                        li {
+                            max-width: 100%;
+                            padding: 0.5em 1em;
+
+                            .vacation-select-detail-display {
+                                @include flexDisplay(row);
+                                justify-content: space-between;
+
+                                .vacation-select-main-detail {
+                                    @include flexDisplay(row);
+                                    .button-container {
+                                        @include button-container();
+                                        margin-right: 1em;
+                                        button {
+                                            @include svg-button();
+
+                                            .svg-container {
+                                                @include svg-container();
+                                            }
+                                        }
+                                    }
+
+                                    .vacation-select-detail-text-container {
+                                        display: flex;
+                                        flex-direction: column;
+                                        align-items: flex-start;
+                                        justify-content: flex-start;
+
+                                        .vacation-select-detail-text-option-container {
+                                            color: hsl(240, 30%, 93%);
+                                            font-size: 0.7rem;
+                                        }
+
+                                        .vacation-select-detail-text-option-padding {
+                                            padding: 0.1em 0;
+                                        }
+
+                                        .vacation-select-detail-text-option-input {
+                                            font-size: 0.8rem;
+                                        }
+                                    }
+                                }
+
+                                .button-container {
+                                    @include button-container();
+                                    button {
+                                        @include svg-button();
+
+                                        .svg-container {
+                                            @include svg-container();
+                                        }
+                                    }
+                                }
+                            }
+
+                            &:nth-child(1) {
+                                
+                                flex-grow: 3;
+                            }
+                            &:nth-child(2) {
+                                flex-grow: 1;
+                                border-left: 1px solid hsl(240, 30%, 93%);
+                            }
+                            &:nth-child(3) {
+                                flex-grow: 1;
+                                border-left: 1px solid hsl(240, 30%, 93%);
+                            }
+                            &:nth-child(4) {
+                                flex-grow: 2;
+                                border-left: 1px solid hsl(240, 30%, 93%);
+                            }
+                        }
+                    }
+                }
+
+                .vacation-select-btn-container {
+                    button {
+                        padding: 0.8em 2.5em;
+                        background: hsl(108, 41%, 65%);
+                        border-radius: 10px;
+                        @include flexDisplay(row);
+                        justify-content: center;
+                        outline: none;
+                        border: 0 solid #000;
+                        color: hsl(0, 0%, 100%);
+
                     }
                 }
             }
